@@ -2,7 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <my:preferences-header />
 <my:preferences-container>
-	<h2>Configuração de Menus</h2>
+	<div class="row">
+	<div class="span6">
+	<h2>Configuration of Menus</h2>
+	</div>
+	<div class="span4">
+		<div class="btn-group">
+			<a href="/menu/create" class="btn btn-large"><i class="icon-plus"></i> Criar novo menu</a>
+		</div>
+	</div>
+	</div>
+	
+	
+	
 	<div class="row span10">
 		<table class="table table-striped">
 			<thead>

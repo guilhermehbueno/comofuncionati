@@ -39,7 +39,7 @@ public class BuenosMenuInterceptor implements Interceptor{
 			List<Menu> menus = SqlTool
 					.getInstance()
 					.select(Menu.class)
-					.where(attribute("pai").isNull().or("pai").equals(""))
+					.where(attribute("status").differentFrom("INATIVO").and("tipo").equals("SUPERIOR"))
 					.build(new Menu())
 					.getResult();
 			context.setAttribute("menus", menus);

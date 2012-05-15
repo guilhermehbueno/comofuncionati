@@ -6,20 +6,20 @@
 	<div class="row span12">
 		<div class="row">
 			<div class="span8">
-				<form class="form-horizontal" action="/menu/update" method="post">
+				<form class="form-horizontal" action="/menu/save" method="post">
 					<fieldset>
 						<div class="control-group">
 							<label class="control-label" for="input01">Name: </label>
 							<div class="controls">
-								<input type="text" name="menu.label" style="height: 28px;" class="input-xlarge" id="input01" value="${menuEdit.label}">
-								<input type="hidden" name="menu.id" value="${menuEdit.id}">
+								<input type="text" name="menu.label" style="height: 28px;" class="input-xlarge" id="input01">
+								<input type="hidden" name="menu.id">
 							</div>
 						</div>
 						
 						<div class="control-group">
 							<label class="control-label" for="input01">Link: </label>
 							<div class="controls">
-								<input type="text" name="menu.link" style="height: 28px;" class="input-xlarge" id="input01" value="${menuEdit.link}">
+								<input type="text" name="menu.link" style="height: 28px;" class="input-xlarge" id="input01">
 								<p class="help-block">Digite valores como: /cargo/gerente/view o resultado ao usu�rio clicar ser�: http://DOMINIO_DO_SISTEMA/cargo/gerente/view</p>
 							</div>
 						</div>
@@ -52,22 +52,8 @@
 							<label class="control-label" for="select01">Type</label>
 							<div class="controls">
 								<select id="select01" name="menu.tipo">
-									<c:choose>
-										<c:when test="${menuEdit.tipo eq 'SUPERIOR'}">
 											<option selected="selected">SUPERIOR</option>	
-										</c:when>
-										<c:otherwise>
-											<option>SUPERIOR</option>	
-										</c:otherwise>
-									</c:choose>
-									<c:choose>
-										<c:when test="${menuEdit.tipo eq 'SUPERIOR_SUBMENU'}">
-											<option selected="selected">SUPERIOR_SUBMENU</option>	
-										</c:when>
-										<c:otherwise>
 											<option>SUPERIOR_SUBMENU</option>	
-										</c:otherwise>
-									</c:choose>
 								</select>
 							</div>
 						</div>

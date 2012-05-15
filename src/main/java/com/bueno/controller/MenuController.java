@@ -1,6 +1,7 @@
 package com.bueno.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
@@ -8,6 +9,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.ioc.SessionScoped;
+import br.com.caelum.vraptor.util.StringUtils;
 import br.com.caelum.vraptor.view.Results;
 
 import com.bueno.component.menu.model.Menu;
@@ -18,14 +20,14 @@ import com.fastsql.sql.command.expression.LogicalComparisonExpression;
 @Resource
 @SessionScoped
 @Path("/menu")
-public class MenuController {
+public class MenuController extends GenericController<Menu>{
 	
 	private final ServletContext context;
 	private final Result result;
 	private List<Menu> allMenus;
 	
 	public MenuController(Result result, ServletContext context) {
-		super();
+		super(result);
 		this.result = result;
 		this.context = context;
 		init();
@@ -56,6 +58,28 @@ public class MenuController {
 	
 	@Path("save")
 	public void save(Menu menu){
+		System.out.println("Salvando o menu: "+menu);
+		try {
+			menu.setId(UUID.randomUUID().toString());
+			String pai = menu.getPai();
+			if(org.apache.commons.lang3.StringUtils.isEmpty(pai)){
+				menu.setPai(null);
+			}
+			SqlTool
+				.insert(menu)
+				.execute();
+			context.setAttribute("updateMenu", true);
+			init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		result.redirectTo("/menu/list"); 
+	}
+
+	
+	@Path("update")
+	public void update(Menu menu){
 		System.out.println("Salvando o menu: "+menu);
 		try {
 			SqlTool

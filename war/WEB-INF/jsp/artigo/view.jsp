@@ -1,5 +1,6 @@
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <%@ page contentType="text/html; charset=UTF-8" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <my:preferences-header />
 <my:preferences-container>
 	<div class="row span12">
@@ -15,7 +16,9 @@
 				
 				<br />
 				<div>
-					<p>${item.conteudo}</p>
+					<p>
+					<c:out value="${item.conteudo}" escapeXml="false"/>
+					 </p>
 				</div>
 
 				<div class="row">
