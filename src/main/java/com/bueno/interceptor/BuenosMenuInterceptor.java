@@ -6,6 +6,9 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.core.InterceptorStack;
@@ -35,7 +38,8 @@ public class BuenosMenuInterceptor implements Interceptor{
 	@Override
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object resourceInstance) throws InterceptionException {
 		if(canRefreshMenu()){
-			System.out.println("Atualizando menus...");
+			Logger logger = LoggerFactory.getLogger(BuenosMenuInterceptor.class);
+			logger.info("Atualizando menus...");
 			List<Menu> menus = SqlTool
 					.getInstance()
 					.select(Menu.class)
