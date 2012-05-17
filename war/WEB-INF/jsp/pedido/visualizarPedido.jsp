@@ -20,75 +20,45 @@
 </ul>
 </div>
 <div class="row">			
-<div class="span3">
-      <ul class="thumbnails">
-        <li class="span3">
-          <a href="#" class="thumbnail">
-            <img src="http://placehold.it/280x280" alt="">
-          </a>
-        </li>
-        <li class="span1">
-          <a href="#" class="thumbnail">
-            <img src="http://placehold.it/60x60" alt="">
-          </a>
-        </li>
-        <li class="span1">
-          <a href="#" class="thumbnail">
-            <img src="http://placehold.it/60x60" alt="">
-          </a>
-        </li>
-        <li class="span1">
-          <a href="#" class="thumbnail">
-            <img src="http://placehold.it/60x60" alt="">
-          </a>
-        </li>
-        <li class="span1">
-          <a href="#" class="thumbnail">
-            <img src="http://placehold.it/60x60" alt="">
-          </a>
-        </li>
-        <li class="span1">
-          <a href="#" class="thumbnail">
-            <img src="http://placehold.it/60x60" alt="">
-          </a>
-        </li>
-        <li class="span1">
-          <a href="#" class="thumbnail">
-            <img src="http://placehold.it/60x60" alt="">
-          </a>
-        </li>
-      </ul>
+<div class="span12">
+	<table class="table">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Descrição</th>
+					<th>Quantidade</th>
+					<th class="span1">Remover Item</th>
+					<th>Preço unitário</th>
+					<th>Preço total</th>
+				</tr>
+			</thead>
+			<tr>
+				<td><img src="http://placehold.it/100x100" alt=""></td>
+				<td><h4>${item.titulo} Nome do produto</h4></td>
+				<td><input type="text" class="span1" style="height: 28px;"/></td>
+				<td><a href="#" class="btn btn-danger btn-mini"><i class="icon-white icon-remove"></i></a></td>
+				<td>R$35,00</td>
+				<td>R$35,00</td>
+			</tr>
+	</table>
+			<hr class="soften">
 </div>
-<div class="span7">
-	<div>
-		<div class="page-header">
-			<h1>${item.titulo} Nome do produto</h1>
-		</div>
-		<div>
+</div>
+<div class="row">
+		<div class="span6 offset4">
 			<p>${item.conteudo} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consectetur aliquet. Ut odio lectus, iaculis vitae ornare ac, rhoncus et velit. Quisque blandit blandit augue quis ultrices. Aliquam quis mi non ipsum fermentum vehicula eu at purus. In blandit auctor nulla id vestibulum. Integer ullamcorper, justo ut pretium sodales, diam sapien sagittis purus, nec dignissim augue nisi vitae ligula. Cras sit amet orci malesuada massa ultricies mattis.</p>
 		</div>
-		<hr class="soften">
-	</div>
-	
-	<div>
-		<div class="page-header">
-			<h1>${item.titulo} Formas de Pagamento</h1>
-		</div>
-		<div>
-			<p>${item.conteudo} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consectetur aliquet. Ut odio lectus, iaculis vitae ornare ac, rhoncus et velit. Quisque blandit blandit augue quis ultrices. Aliquam quis mi non ipsum fermentum vehicula eu at purus. In blandit auctor nulla id vestibulum. Integer ullamcorper, justo ut pretium sodales, diam sapien sagittis purus, nec dignissim augue nisi vitae ligula. Cras sit amet orci malesuada massa ultricies mattis.</p>
-		</div>
-		<hr class="soften">
-	</div>
-</div>
+
 <div class="span2">
-<div  style="padding-top: 200px;">
-</div>
-
-    <img  class="thumbnail" src="http://placehold.it/250x150&text=COMPRAR >>" alt="Pague com PagSeguro" />
-</div>
-
+    <!-- submit do form (obrigatório) -->  
+    <img  class="thumbnail" src="http://placehold.it/250x150&text=COMPRAR >>" alt="Pague com PagSeguro">
 
 </div>
+	</div>
+
+
+		
+		
 		<div class="row">
 			<div class="page-header">
 			  <h2>Veja também</h2>
