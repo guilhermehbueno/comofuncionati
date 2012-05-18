@@ -2,6 +2,7 @@ package com.bueno.component.produto.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -22,6 +23,18 @@ public class Produto {
 	
 	@Column(name="preco")
 	private double preco;
+	
+	@Enumerated
+	@Column(name="status")
+	private ProdutoStatusEnum status;
+	
+	public ProdutoStatusEnum getStatus() {
+		return status;
+	}
+
+	public void setStatus(ProdutoStatusEnum status) {
+		this.status = status;
+	}
 
 	public String getIdProduto() {
 		return idProduto;

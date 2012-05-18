@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+/**
+ * @author Guilherme
+ *
+ */
 @Entity(name="pagina")
 public class Pagina {
 	
@@ -39,10 +43,10 @@ public class Pagina {
 	private PaginaTipoEnum tipo;
 	
 	@Column(name="pai")
-	private Pagina pai;
+	private String pai;
 	
-	@OneToMany
-	@JoinColumn(table="pagina", referencedColumnName="pai")
+	//@OneToMany
+	//@JoinColumn(table="pagina", referencedColumnName="pai")
 	private List<Pagina> paginas;
 
 	public String getTitulo() {
@@ -77,11 +81,11 @@ public class Pagina {
 		this.conteudoResumido = conteudoResumido;
 	}
 
-	public Pagina getPai() {
+	public String getPai() {
 		return pai;
 	}
 
-	public void setPai(Pagina pai) {
+	public void setPai(String pai) {
 		this.pai = pai;
 	}
 

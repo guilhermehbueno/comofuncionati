@@ -17,3 +17,14 @@
     <script src="/stylesheets/assets/js/bootstrap-carousel.js"></script>
     <script src="/stylesheets/assets/js/bootstrap-typeahead.js"></script>
     <script src="/stylesheets/assets/js/application.js"></script>
+    
+     <script>
+		/*Funcao utilizada somente para calcular valor final ao usuário*/     
+     	function calculaTotal(){
+			
+		}
+		
+		function calculaTotalPorProduto(){
+			
+		}
+    </script>

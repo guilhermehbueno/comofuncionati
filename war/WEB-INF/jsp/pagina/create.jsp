@@ -96,11 +96,11 @@
 									<option selected="selected"></option>
 								<c:forEach var="itemParent" items="${itens}">
 									<c:choose>
-											<c:when test="${item.pai eq itemParent.id}">
-												<option selected="selected" value="${itemParent.id}"><c:out value="${itemParent.label}" /></option>	
+											<c:when test="${item.pai eq itemParent.idPagina}">
+												<option selected="selected" value="${itemParent.idPagina}"><c:out value="${itemParent.titulo}" /></option>	
 											</c:when>
 											<c:otherwise>
-												<option value="${itemParent.id}"><c:out value="${itemParent.label}" /></option>	
+												<option value="${itemParent.idPagina}"><c:out value="${itemParent.titulo}" /></option>	
 											</c:otherwise>
 									</c:choose>
 								</c:forEach>

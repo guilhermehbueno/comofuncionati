@@ -13,7 +13,6 @@ public class IndexController {
 	}
 
 	public void index() {
-		result.include("variable", "VRaptor!");
-		result.include("nome", "Não Vote Nele!");
+		this.result.redirectTo("/loja/produtos");
 	}
 }

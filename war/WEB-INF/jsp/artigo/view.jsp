@@ -21,15 +21,16 @@
 					 </p>
 				</div>
 
-				<div class="row">
+				<div class="row"> 
+				<c:if test="${paginacao ne null}">
 					<ul class="pager">
-						<li><a href="#">Prev</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">Next</a></li>
+						<li><a href="/artigo/${paginacaoPrev.identificador}/view/page/${paginacaoPrev.label}">Prev</a></li>
+						<c:forEach var="paginacao" items="${paginacao}">
+							<li class="${paginacao.estado}"><a href="/artigo/${paginacao.identificador}/view/page/${paginacao.label}">${paginacao.label}</a></li>
+						</c:forEach>
+						<li><a href="/artigo/${paginacaoNext.identificador}/view/page/${paginacaoNext.label}">Next</a></li>
 					</ul>
+				</c:if>
 				</div>
 			</div>
 		</div>
