@@ -19,6 +19,7 @@
 					<th>Id</th>
 					<th>Name</th>
 					<th>Category</th>
+					<th>Description</th>
 					<th>Preco</th>
 					<th>Status</th>
 					<th>
@@ -31,6 +32,7 @@
 					<td><c:out value="${item.idProduto}" /></td>
 					<td><c:out value="${item.nome}" /></td>
 					<td><c:out value="${item.categoria}" /></td>
+					<td><c:out value="${item.descricao}" /></td>
 					<td><c:out value="${item.preco}" /></td>
 					<td><c:out value="${item.status}" /></td>
 						<td>

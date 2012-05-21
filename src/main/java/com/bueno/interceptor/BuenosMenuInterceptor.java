@@ -2,6 +2,7 @@ package com.bueno.interceptor;
 
 import static com.fastsql.sql.command.expression.LogicalComparisonExpression.attribute;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -13,16 +14,17 @@ import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.core.InterceptorStack;
 import br.com.caelum.vraptor.interceptor.Interceptor;
-import br.com.caelum.vraptor.ioc.SessionScoped;
+import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.resource.ResourceMethod;
 
 import com.bueno.component.menu.model.Menu;
 import com.fastsql.sql.builder.SqlTool;
 
 @Intercepts
-@SessionScoped
-public class BuenosMenuInterceptor implements Interceptor{
+@RequestScoped
+public class BuenosMenuInterceptor implements Interceptor, Serializable{
 	
+	private static final long serialVersionUID = -7170834172240220968L;
 	private final ServletContext context;
 
 	public BuenosMenuInterceptor(ServletContext request) {

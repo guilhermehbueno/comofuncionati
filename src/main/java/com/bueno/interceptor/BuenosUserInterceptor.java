@@ -44,7 +44,6 @@ public class BuenosUserInterceptor  implements Interceptor {
 				result.include("userName", user.getEmail());
 				result.include("logout", userService.createLogoutURL("/"));
 			}
-		  
 	        stack.next(method, resourceInstance);
 	}
 

@@ -28,6 +28,28 @@ public class Produto {
 	@Column(name="status")
 	private ProdutoStatusEnum status;
 	
+	@Column(name="descricao")
+	private String descricao;
+	
+	@Column(name="descricaoResumida")
+	private String descricaoResumida;
+	
+	public String getDescricaoResumida() {
+		return descricaoResumida;
+	}
+
+	public void setDescricaoResumida(String descricaoResumida) {
+		this.descricaoResumida = descricaoResumida;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	public ProdutoStatusEnum getStatus() {
 		return status;
 	}

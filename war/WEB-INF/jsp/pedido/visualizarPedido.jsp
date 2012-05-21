@@ -5,10 +5,10 @@
 	<div class="row span12">
 		<div class="row">
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a> <span class="divider">/</span></li>
-				<li><a href="#">Produtos</a> <span class="divider">/</span></li>
-				<li><a href="#">Chinelo</a><span class="divider">/</span></li>
-				<li class="active">Chinelo Azul</li>
+				<li  class="active"><a href="#">Meu carrinho </a> <span class="divider">=></span></li>
+				<li><a href="#">Identificação</a> <span class="divider">=></span></li>
+				<li><a href="#">Endereço</a><span class="divider">=></span></li>
+				<li><a href="#">Pagamento</a><span class="divider">=></span></li>
 			</ul>
 		</div>
 		<div class="row">
@@ -78,10 +78,11 @@
 
 			<div class="span2">
 				<!-- submit do form (obrigatório) -->
+				<a href="/pedido/confirmacao">
 				<img class="thumbnail"
 					src="http://placehold.it/250x150&text=COMPRAR >>"
 					alt="Pague com PagSeguro">
-
+				</a>
 			</div>
 		</div>
 		<div class="row">

@@ -13,6 +13,5 @@ public class IndexController {
 	}
 
 	public void index() {
-		this.result.redirectTo("/loja/produtos");
 	}
 }

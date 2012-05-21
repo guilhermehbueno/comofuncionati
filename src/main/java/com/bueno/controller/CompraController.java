@@ -2,6 +2,7 @@ package com.bueno.controller;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -30,7 +31,7 @@ import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 
 @Resource
 @Path("compra")
-public class CompraController {
+public class CompraController implements Serializable{
 
 	private final Logger logger = LoggerFactory
 			.getLogger(CompraController.class);

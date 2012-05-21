@@ -8,17 +8,14 @@ import javax.servlet.ServletContext;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.ioc.SessionScoped;
-import br.com.caelum.vraptor.util.StringUtils;
-import br.com.caelum.vraptor.view.Results;
+import br.com.caelum.vraptor.ioc.RequestScoped;
 
 import com.bueno.component.menu.model.Menu;
 import com.fastsql.sql.builder.SqlTool;
-import com.fastsql.sql.command.expression.Expression;
 import com.fastsql.sql.command.expression.LogicalComparisonExpression;
 
 @Resource
-@SessionScoped
+@RequestScoped
 @Path("/menu")
 public class MenuController extends GenericController<Menu>{
 	

@@ -2,6 +2,7 @@ package com.bueno.controller;
 
 import static com.fastsql.sql.command.expression.LogicalComparisonExpression.id;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -14,8 +15,9 @@ import br.com.caelum.vraptor.Result;
 import com.fastsql.sql.builder.SqlTool;
 import com.fastsql.sql.reflection.util.SqlReflectionUtil;
 
-public abstract class GenericController<T>{
+public abstract class GenericController<T> implements Serializable{
 	
+	private static final long serialVersionUID = -1669146038773069514L;
 	private final Result result;
 	
 	public GenericController(Result result) {

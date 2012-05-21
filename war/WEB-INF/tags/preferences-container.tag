@@ -44,35 +44,109 @@
 			    <ul class="dropdown-menu pull-right">
 			      <c:if test="${userName ne null}">
 				      <li><a href="/perfil">${userName}</a></li>
+				       <li><a href="/perfil">Meus pedidos</a></li>
+				       <li><a href="/perfil">Meus endereços</a></li>
 				      <li><a href="${logout}">Sair</a></li>
 			      </c:if>
 			      <c:if test="${userName eq null}">
-				      <li><a href="${login}">Entrar</a></li>
-				      <li><a href="/cadastrar">Cadastrar</a></li>
+				      <li><a data-toggle="modal" href="#logar">Entrar</a></li>
+				      <li><a data-toggle="modal" href="#cadastrar" >Cadastrar</a></li>
 			      </c:if>
 			    </ul>
 			    
 			  </li>
           		</ul>
           </div>
-          
         </div>
       </div>
     </div>
 
 	
-<div class="container-fluid">
+<div class="container">
   <div class="row-fluid">
-  	<!--
-    <div class="span2">
-    	 <preferences:menu />
-    </div>
-     -->
-    <div class="span12">
       <jsp:doBody />
-    </div>
   </div>
 </div>
 
-	</body>
+
+
+<!-- MODAL -->
+    <div id="cadastrar" class="modal hide fade">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal">&times;</button>
+              <h3>Inscreva-se</h3>
+            </div>
+            <div class="modal-body">
+			<br/>
+			
+			<form  class="well form-inline" action="/produto/save" method="post">
+						<div class="row-fluid">
+							<div class="span10">
+								<input type="text"  style="height: 28px;" placeholder="Nome completo" class="text-input email-input" id="input01" >
+							</div>
+						</div>
+						
+						<div class="row-fluid">
+							<div class="span10">
+								<input type="text"  style="height: 28px;" placeholder="E-mail" class="text-input email-input" id="input01" >
+							</div>
+						</div>
+						
+						<div class="row-fluid">
+								<div class="span8">
+									<input type="text"  style="height: 28px;" placeholder="Senha" class="text-input" id="input02" >
+									
+								</div>
+						</div>
+			</form>
+            </div>
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-warning" value="Inscreva-se"/>
+              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+            </div>
+          </div>
+          
+          
+           <div id="logar" class="modal hide fade">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal">&times;</button>
+              <h3>Entrar</h3>
+            </div>
+            <div class="modal-body">
+              <form  class="well form-inline" action="/produto/save" method="post">
+						<div class="row-fluid">
+							<div class="span10">
+								<input type="text"  style="height: 28px;" placeholder="Usuário ou E-mail" class="text-input email-input" id="input01" >
+							</div>
+						</div>
+						
+						<div class="row-fluid">
+								<div class="span8">
+									<input type="text" style="height: 28px;" placeholder="Senha" class="text-input" id="input02" >
+									
+								</div>
+							</div>
+							<div class="row-fluid">
+								<label class="checkbox">
+							    	<input type="checkbox"> Lembrar-me
+   							    </label>
+   							    <label class="control-label" style="padding-top: 3px;">
+   							    <a href="#">Esqueceu sua senha?</a>
+   							    </label>
+							</div>
+			</form>
+			<br/>
+            </div>
+            <div class="modal-footer">
+            <img alt="Twitter" src="/stylesheets/assets/img/social-icons/Twitter.png">
+			<a href="${login}"><img alt="Twitter" src="/stylesheets/assets/img/social-icons/Google+.png"></a>
+			<img alt="Twitter" src="/stylesheets/assets/img/social-icons/Facebook.png">
+             <button class="btn btn-info">Entrar</button>
+              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+            </div>
+          </div>
+<!-- MODAL -->
+
+</body>
+	
 	

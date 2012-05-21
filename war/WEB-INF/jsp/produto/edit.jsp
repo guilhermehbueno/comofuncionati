@@ -23,6 +23,20 @@
 							</div>
 						</div>
 						
+						<div class="control-group">
+							<label class="control-label" for="input01">Description: </label>
+							<div class="controls">
+								<input type="text" name="t.descricao" style="height: 28px;" class="input-xlarge span8" id="input01" value="${item.descricao}">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="input01">Resumed Description: </label>
+							<div class="controls">
+								<input type="text" name="t.descricaoResumida" style="height: 28px;" class="input-xlarge span8" id="input01" value="${item.descricaoResumida}">
+							</div>
+						</div>
+						
 								
 						<div class="control-group">
 							<label class="control-label" for="input01">Price: </label>

@@ -1,20 +1,17 @@
 package com.bueno.controller;
 
-import static com.fastsql.sql.command.expression.LogicalComparisonExpression.id;
-
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
-
-import com.bueno.component.pagina.model.Pagina;
-import com.fastsql.sql.builder.SqlTool;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.ioc.SessionScoped;
+import br.com.caelum.vraptor.ioc.RequestScoped;
+
+import com.bueno.component.pagina.model.Pagina;
+import com.fastsql.sql.builder.SqlTool;
 
 @Resource
-@SessionScoped
+@RequestScoped
 @Path("/pagina")
 public class PaginaController extends GenericController<Pagina>{
 	

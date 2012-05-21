@@ -3,7 +3,7 @@
 <my:preferences-header />
 <my:preferences-container>
 	<div class="row span12">
-		<div class="row">
+		<div class="row-fluid">
 			<div class=" span4">
 				<img src="http://placehold.it/370x298" alt="">
 			</div>
@@ -32,7 +32,7 @@
 		</div>
 		<hr class="soften">
 		
-		<div class="row">
+		<div class="row-fluid">
 			<div class="page-header">
 			  <h2>Veja também</h2>
 			</div>

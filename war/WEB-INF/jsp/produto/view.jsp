@@ -1,9 +1,10 @@
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8" %> 
 <my:preferences-header />
 <my:preferences-container>
 <div class="row span12">
-<div class="row">
+<div class="row-fluid">
 <ul class="breadcrumb">
   <li>
     <a href="#">Home</a> <span class="divider">/</span>
@@ -12,14 +13,14 @@
     <a href="#">Produtos</a> <span class="divider">/</span>
   </li>
   <li >
-  	 <a href="#">Chinelo</a><span class="divider">/</span>
+  	 <a href="#">${produto.categoria}</a><span class="divider">/</span>
   </li>
   <li class="active">
-    Chinelo Azul 
+    ${produto.nome}
   </li>
 </ul>
 </div>
-<div class="row">			
+<div class="row-fluid">			
 <div class="span3">
       <ul class="thumbnails">
         <li class="span3">
@@ -62,20 +63,31 @@
 <div class="span7">
 	<div>
 		<div class="page-header">
-			<h1>${item.titulo} Nome do produto</h1>
+			<h1>${produto.nome}</h1>
 		</div>
 		<div>
-			<p>${item.conteudo} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consectetur aliquet. Ut odio lectus, iaculis vitae ornare ac, rhoncus et velit. Quisque blandit blandit augue quis ultrices. Aliquam quis mi non ipsum fermentum vehicula eu at purus. In blandit auctor nulla id vestibulum. Integer ullamcorper, justo ut pretium sodales, diam sapien sagittis purus, nec dignissim augue nisi vitae ligula. Cras sit amet orci malesuada massa ultricies mattis.</p>
+			<p>
+				${produto.descricao}
+			</p>
+			<p>
+				<h3>R$ ${produto.preco}</h3>
+			</p>
 		</div>
 		<hr class="soften">
 	</div>
 	
 	<div>
 		<div class="page-header">
-			<h1>${item.titulo} Formas de Pagamento</h1>
+			<h1>Formas de Pagamento</h1>
 		</div>
 		<div>
-			<p>${item.conteudo} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra consectetur aliquet. Ut odio lectus, iaculis vitae ornare ac, rhoncus et velit. Quisque blandit blandit augue quis ultrices. Aliquam quis mi non ipsum fermentum vehicula eu at purus. In blandit auctor nulla id vestibulum. Integer ullamcorper, justo ut pretium sodales, diam sapien sagittis purus, nec dignissim augue nisi vitae ligula. Cras sit amet orci malesuada massa ultricies mattis.</p>
+			<p>
+				O PagSeguro  da empresa UOL é atualmente uma das formas de pagamento mais seguros que existem no comércio eletrônico. Com ele você não precisa informar oo número de seu cartão de crédito diretamente à loja que você está comprando. 
+Caso você tenha problema com a entrega do produto o mesmo permite a você bloquear o pagamento realizado em até 14 dias.
+Além disto o PagSeguro oferece como forma de pagamento os príncipais MMMMMMMMM MMMMMMM MMMMMMM MMMMM MMMM.
+
+ 
+			</p>
 		</div>
 		<hr class="soften">
 	</div>
@@ -83,21 +95,23 @@
 <div class="span2">
 <div  style="padding-top: 200px;">
 </div>
-
+	<a href="/pedido/identificacao">
     <img  class="thumbnail" src="http://placehold.it/250x150&text=COMPRAR >>" alt="Pague com PagSeguro" />
+    </a>
 </div>
 
 
 </div>
-		<div class="row">
-			<div class="page-header">
-			  <h2>Veja também</h2>
+			<div class="row-fluid">
+				<div class="page-header">
+				  <h2>Veja também</h2>
+				</div>
 			</div>
+			<div class="row">
 			
 			<!-- TORNAR DINAMICO -->
 			<div class="span3">
 				<ul class="thumbnails">
-					<c:forEach var="submenu" items="${menu.menu}">
 						<li class="span3">
 							<div class="thumbnail">
 								<img src="http://placehold.it/260x180" alt="">
@@ -114,14 +128,34 @@
 									</p>
 								</div>
 							</div>
-					</c:forEach>
+						</li>
+				</ul>
+			</div>
+			
+			<div class="span3">
+				<ul class="thumbnails">
+						<li class="span3">
+							<div class="thumbnail">
+								<img src="http://placehold.it/260x180" alt="">
+								<div class="caption">
+									<h5>
+										<c:out value="${submenu.label}" />
+										<br />
+									</h5>
+									<p>Cras justo odio, dapibus ac facilisis in, egestas eget
+										quam. Donec id elit non mi porta gravida at eget metus. Nullam
+										id dolor id nibh ultricies vehicula ut id elit.</p>
+									<p>
+										<a href="#" class="btn btn-primary">Saiba Mais...</a>
+									</p>
+								</div>
+							</div>
 					</li>
 				</ul>
 			</div>
 			
 			<div class="span3">
 				<ul class="thumbnails">
-					<c:forEach var="submenu" items="${menu.menu}">
 						<li class="span3">
 							<div class="thumbnail">
 								<img src="http://placehold.it/260x180" alt="">
@@ -138,14 +172,12 @@
 									</p>
 								</div>
 							</div>
-					</c:forEach>
 					</li>
 				</ul>
 			</div>
 			
 			<div class="span3">
 				<ul class="thumbnails">
-					<c:forEach var="submenu" items="${menu.menu}">
 						<li class="span3">
 							<div class="thumbnail">
 								<img src="http://placehold.it/260x180" alt="">
@@ -162,31 +194,6 @@
 									</p>
 								</div>
 							</div>
-					</c:forEach>
-					</li>
-				</ul>
-			</div>
-			
-			<div class="span3">
-				<ul class="thumbnails">
-					<c:forEach var="submenu" items="${menu.menu}">
-						<li class="span3">
-							<div class="thumbnail">
-								<img src="http://placehold.it/260x180" alt="">
-								<div class="caption">
-									<h5>
-										<c:out value="${submenu.label}" />
-										<br />
-									</h5>
-									<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-										quam. Donec id elit non mi porta gravida at eget metus. Nullam
-										id dolor id nibh ultricies vehicula ut id elit.</p>
-									<p>
-										<a href="#" class="btn btn-primary">Saiba Mais...</a>
-									</p>
-								</div>
-							</div>
-					</c:forEach>
 					</li>
 				</ul>
 			</div>
