@@ -76,34 +76,33 @@
               <button class="close" data-dismiss="modal">&times;</button>
               <h3>Inscreva-se</h3>
             </div>
+			<form  class="well form-inline" action="/usuario/save" method="post">
             <div class="modal-body">
 			<br/>
 			
-			<form  class="well form-inline" action="/produto/save" method="post">
 						<div class="row-fluid">
 							<div class="span10">
-								<input type="text"  style="height: 28px;" placeholder="Nome completo" class="text-input email-input" id="input01" >
+								<input type="text" name="t.nome"  style="height: 28px;" placeholder="Nome completo" class="text-input email-input" id="input01" >
 							</div>
 						</div>
 						
 						<div class="row-fluid">
 							<div class="span10">
-								<input type="text"  style="height: 28px;" placeholder="E-mail" class="text-input email-input" id="input01" >
+								<input type="text" name="t.email" style="height: 28px;" placeholder="E-mail" class="text-input email-input" id="input01" >
 							</div>
 						</div>
 						
 						<div class="row-fluid">
 								<div class="span8">
-									<input type="text"  style="height: 28px;" placeholder="Senha" class="text-input" id="input02" >
-									
+									<input type="text" name="t.senha" style="height: 28px;" placeholder="Senha" class="text-input" id="input02" >
 								</div>
 						</div>
-			</form>
             </div>
             <div class="modal-footer">
               <input type="submit" class="btn btn-warning" value="Inscreva-se"/>
               <a href="#" class="btn" data-dismiss="modal" >Close</a>
             </div>
+			</form>
           </div>
           
           
