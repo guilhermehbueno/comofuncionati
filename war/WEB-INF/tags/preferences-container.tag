@@ -76,7 +76,7 @@
               <button class="close" data-dismiss="modal">&times;</button>
               <h3>Inscreva-se</h3>
             </div>
-			<form  class="well form-inline" action="/usuario/save" method="post">
+			<form id="formCadastroUsuario" class="well form-inline" action="/usuario/save" method="post">
             <div class="modal-body">
 			<br/>
 			

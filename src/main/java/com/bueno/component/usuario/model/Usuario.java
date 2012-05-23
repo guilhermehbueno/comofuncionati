@@ -91,4 +91,11 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nome=" + nome + ", tipo="
+				+ tipo + ", status=" + status + ", observacao=" + observacao
+				+ ", origemId=" + origemId + ", origemNome=" + origemNome
+				+ ", email=" + email + ", senha=" + senha + "]";
+	}
 }
