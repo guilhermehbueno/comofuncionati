@@ -20,22 +20,35 @@
 <script src="/stylesheets/assets/js/application.js"></script>
 
 
+
+
 <script type="text/javascript" charset="utf-8">
 		jQuery(document).ready(function(){
+			var urlHost ='${host}/usuario/salvar';
+			console.log(urlHost);
+			$('#loader').hide();
 			$('#formCadastroUsuario').submit(function(){
+				$('#loader').show();
 				jQuery.ajax({
-			          url: 'http://localhost:8888/usuario/salvar',
+			          url: urlHost,
 			          type: 'POST',
 			          data:{nome: 'guilherme', email:'guilhermehbueno@gmail.com', senha:'123'},
 			          dataType: 'json',
 			          success: function(data) {
-			        	    console.log('Load was performed: '+data);
+			        	    console.log('Load was performed: '+data.usuario.email);
+							$('#cadastrar').modal('hide')
+							$("#menuPerfil")
+								.empty()
+								.html("<li id='userNameLogado'><a href='#'>"+data.usuario.email+"</a></li>")
+								.append("<li><a href='/perfil'>Meus pedidos</a></li>")
+								.append("<li><a href='/perfil'>Meus endereços</a></li>")
+								.append("<li><a href='/login/logout'>Sair</a></li>");
 			          }
 				});
-				$('#cadastrar').modal('hide')
 				return false; 
 			});
 		});
 </script>
 
-
+	
+	

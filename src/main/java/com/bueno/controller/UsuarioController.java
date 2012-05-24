@@ -3,6 +3,9 @@ package com.bueno.controller;
 import java.io.Serializable;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.bueno.component.produto.model.Produto;
 import com.bueno.component.usuario.model.Usuario;
 import com.fastsql.sql.builder.SqlTool;
@@ -19,10 +22,16 @@ public class UsuarioController  extends GenericController<Usuario>  implements S
 	
 	private static final long serialVersionUID = 6633825796817030947L;
 	private final Result result;
+	private final HttpServletRequest request;
+	private final HttpSession session;
 
-	public UsuarioController(Result result) {
+	public UsuarioController(Result result, HttpServletRequest request) {
 		super(result);
 		this.result = result;
+		this.request = request;
+		this.session = this.request.getSession();
+		System.out.println("Session id: "+this.session.getId());
+		System.out.println("Username: "+ this.session.getAttribute("userName"));
 	}
 	
 	@Path("salvar")
@@ -34,7 +43,8 @@ public class UsuarioController  extends GenericController<Usuario>  implements S
 			usuario.setEmail(email);
 			usuario.setSenha(senha);
 			SqlTool.insert(usuario).execute();
-			result.redirectTo("/"); 
+			this.session.setAttribute("userName", usuario.getEmail());
+			this.result.use(Results.json()).from(usuario).serialize();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

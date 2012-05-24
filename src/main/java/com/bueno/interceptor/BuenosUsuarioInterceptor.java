@@ -1,6 +1,7 @@
 package com.bueno.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -16,15 +17,16 @@ import br.com.caelum.vraptor.resource.ResourceMethod;
 
 @Intercepts
 @RequestScoped
-public class BuenosUsuarioInterceptor  implements Interceptor {
+public class BuenosUsuarioInterceptor implements Interceptor {
 	
 	private final HttpServletRequest request;
-	private final Result result;
+	private final HttpSession session;
 
-	public BuenosUsuarioInterceptor(HttpServletRequest request, Result result) {
+	public BuenosUsuarioInterceptor(HttpServletRequest request) {
 		super();
 		this.request = request;
-		this.result = result;
+		this.session = this.request.getSession(true);
+		System.out.println("Session id: "+this.session.getId());
 	}
 
 	@Override
@@ -45,13 +47,13 @@ public class BuenosUsuarioInterceptor  implements Interceptor {
 	private boolean isLoggedInGoogle(){
 		UserService userService = UserServiceFactory.getUserService();
 		if(!userService.isUserLoggedIn()){
-			result.include("login", userService.createLoginURL(request.getRequestURI()));
-			result.include("userName", null);
+			this.session.setAttribute("login", userService.createLoginURL(request.getRequestURI()));
+			//this.session.setAttribute("userName", null);
 			return false;
 		}else{
 			User user = userService.getCurrentUser();
-			result.include("userName", user.getEmail());
-			result.include("logout", userService.createLogoutURL("/"));
+			this.session.setAttribute("userName", user.getEmail());
+			this.session.setAttribute("logout", userService.createLogoutURL("/"));
 			return true;
 		}
 	}

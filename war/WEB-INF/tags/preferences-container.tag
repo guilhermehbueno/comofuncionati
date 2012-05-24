@@ -41,14 +41,14 @@
 			      Perfil
 			      <b class="caret"></b>
 			    </a>
-			    <ul class="dropdown-menu pull-right">
+			    <ul class="dropdown-menu pull-right" id="menuPerfil">
 			      <c:if test="${userName ne null}">
-				      <li><a href="/perfil">${userName}</a></li>
+			       	   <li id="userNameLogado"><a href="#">${userName}</a></li>
 				       <li><a href="/perfil">Meus pedidos</a></li>
 				       <li><a href="/perfil">Meus endereços</a></li>
-				      <li><a href="${logout}">Sair</a></li>
+				       <li><a href="${logout}">Sair</a></li>
 			      </c:if>
-			      <c:if test="${userName eq null}">
+			      <c:if test="${userName eq null}">			       	  
 				      <li><a data-toggle="modal" href="#logar">Entrar</a></li>
 				      <li><a data-toggle="modal" href="#cadastrar" >Cadastrar</a></li>
 			      </c:if>
@@ -99,8 +99,15 @@
 						</div>
             </div>
             <div class="modal-footer">
-              <input type="submit" class="btn btn-warning" value="Inscreva-se"/>
-              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+            	<div class="row">
+            		<div class="span2">
+		              <input type="submit" class="btn btn-warning" value="Inscreva-se"/>
+		              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+            		</div>
+            		<div class="span3">
+            			<img id="loader" src="/stylesheets/assets/load.gif"></img>
+            		</div>
+            	</div>
             </div>
 			</form>
           </div>
@@ -137,15 +144,20 @@
 			<br/>
             </div>
             <div class="modal-footer">
-            <img alt="Twitter" src="/stylesheets/assets/img/social-icons/Twitter.png">
-			<a href="${login}"><img alt="Twitter" src="/stylesheets/assets/img/social-icons/Google+.png"></a>
-			<img alt="Twitter" src="/stylesheets/assets/img/social-icons/Facebook.png">
-             <button class="btn btn-info">Entrar</button>
-              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+            	<div class="row">
+            		<div class="span3">
+		               <img alt="Twitter" src="/stylesheets/assets/img/social-icons/Twitter.png">
+					   <a href="${login}"><img alt="Twitter" src="/stylesheets/assets/img/social-icons/Google+.png"></a>
+					   <img alt="Twitter" src="/stylesheets/assets/img/social-icons/Facebook.png">
+			           <button class="btn btn-info">Entrar</button>
+			           <a href="#" class="btn" data-dismiss="modal" >Close</a>
+            		</div>
+            		<div class="span2">
+            			<img id="loader" src="/stylesheets/assets/load.gif"></img>
+            		</div>
+            	</div>
             </div>
           </div>
 <!-- MODAL -->
 
 </body>
-	
-	
