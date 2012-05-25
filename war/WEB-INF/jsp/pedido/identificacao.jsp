@@ -7,6 +7,7 @@
 				  <h3>Endereço cadastrados</h3>
 			</div>
 			
+		<div id="enderecos">
 			<div class="span3">
 				<i class="icon icon-home"></i> Residencial<br/>
 				Guilherme  Bueno<br/>
@@ -34,13 +35,14 @@
 				<a href="/pedido/1/view" class="btn btn-success btn-mini"><i class="icon-white icon-ok"></i> Entregar neste endereço</a>
 			</div>
 		</div>
+		</div>
 		
 		<div class="row">
 			<div class="page-header">
 				  <h3>Cadastrar novo endereço</h3>
 			</div>
 			
-			<form class="form-horizontal" action="/produto/save" method="post">
+			<form id="formEndereco" class="form-horizontal"  method="post">
 					<fieldset>
 						<div class="control-group">
 							<label class="control-label" for="input01">CEP: </label>
@@ -140,8 +142,6 @@
 							</div>
 						</div>
 						
-						
-						
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">
 								Cadastrar
@@ -150,5 +150,26 @@
 					</fieldset>
 				</form>
 		</div>
+	<script type="text/javascript" charset="utf-8">
+		jQuery(document).ready(function(){
+			if(${userName eq null}){
+				$('#closeLogin').hide();
+				$('#closeLoginBtn').hide();
+				$('#closeCadastro').hide();
+				$('#closeCadastroBtn').hide();
+				$('#logar').modal({
+					  keyboard: false,
+					  show: true,
+					  backdrop:true
+				});
+				$('#cadastrar').modal({
+					  keyboard: false,
+					  show: false,
+					  backdrop:true
+				});
+				
+			}
+		});
+	</script>
 </my:preferences-container>
 <my:preferences-footer />

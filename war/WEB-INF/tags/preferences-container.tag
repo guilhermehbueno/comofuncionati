@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ tag body-content="scriptless" %>
 	<body>
-		
-
   <!-- Navbar  ================================================== -->
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -46,7 +44,7 @@
 			       	   <li id="userNameLogado"><a href="#">${userName}</a></li>
 				       <li><a href="/perfil">Meus pedidos</a></li>
 				       <li><a href="/perfil">Meus endereços</a></li>
-				       <li><a href="${logout}">Sair</a></li>
+				       <li><a href="/login/logout">Sair</a></li>
 			      </c:if>
 			      <c:if test="${userName eq null}">			       	  
 				      <li><a data-toggle="modal" href="#logar">Entrar</a></li>
@@ -68,15 +66,13 @@
   </div>
 </div>
 
-
-
 <!-- MODAL -->
     <div id="cadastrar" class="modal hide fade">
             <div class="modal-header">
-              <button class="close" data-dismiss="modal">&times;</button>
+              <button id="closeCadastro" class="close" data-dismiss="modal">&times;</button>
               <h3>Inscreva-se</h3>
             </div>
-			<form id="formCadastroUsuario" class="well form-inline" action="/usuario/save" method="post">
+			<form id="formCadastroUsuario" class="well form-inline" method="post">
             <div class="modal-body">
 			<br/>
 			
@@ -102,7 +98,7 @@
             	<div class="row">
             		<div class="span2">
 		              <input type="submit" class="btn btn-warning" value="Inscreva-se"/>
-		              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+		              <a href="#"  id="closeCadastroBtn" class="btn" data-dismiss="modal" >Close</a>
             		</div>
             		<div class="span3">
             			<img id="loader" src="/stylesheets/assets/load.gif"></img>
@@ -114,12 +110,12 @@
           
           
            <div id="logar" class="modal hide fade">
+              <form id="formLogin" class="well form-inline  method="post">
             <div class="modal-header">
-              <button class="close" data-dismiss="modal">&times;</button>
+              <button id="closeLogin" class="close" data-dismiss="modal">&times;</button>
               <h3>Entrar</h3>
             </div>
             <div class="modal-body">
-              <form  class="well form-inline" action="/produto/save" method="post">
 						<div class="row-fluid">
 							<div class="span10">
 								<input type="text"  style="height: 28px;" placeholder="Usuário ou E-mail" class="text-input email-input" id="input01" >
@@ -133,14 +129,19 @@
 								</div>
 							</div>
 							<div class="row-fluid">
+							 	<br/>
 								<label class="checkbox">
 							    	<input type="checkbox"> Lembrar-me
    							    </label>
+   							    <br/>
    							    <label class="control-label" style="padding-top: 3px;">
-   							    <a href="#">Esqueceu sua senha?</a>
+   							    	<a href="#">Esqueceu sua senha?</a>
+   							    </label>
+   							    <br/>
+   							    <label class="control-label" style="padding-top: 3px;">
+   							    	<a href="#" onclick="viewModalCadastrar()" >Não tem cadastro?</a>
    							    </label>
 							</div>
-			</form>
 			<br/>
             </div>
             <div class="modal-footer">
@@ -150,13 +151,14 @@
 					   <a href="${login}"><img alt="Twitter" src="/stylesheets/assets/img/social-icons/Google+.png"></a>
 					   <img alt="Twitter" src="/stylesheets/assets/img/social-icons/Facebook.png">
 			           <button class="btn btn-info">Entrar</button>
-			           <a href="#" class="btn" data-dismiss="modal" >Close</a>
+			           <a href="#" id="closeLoginBtn" class="btn" data-dismiss="modal" >Close</a>
             		</div>
             		<div class="span2">
-            			<img id="loader" src="/stylesheets/assets/load.gif"></img>
+            			<img id="loaderLogin" src="/stylesheets/assets/load.gif"></img>
             		</div>
             	</div>
             </div>
+			</form>
           </div>
 <!-- MODAL -->
 

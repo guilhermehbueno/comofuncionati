@@ -5,11 +5,11 @@
 <my:preferences-container>
 	<div class="row-fluid">
 			<div class="row">
-				<div class=" span4">
-					<img src="http://placehold.it/370x298" alt="">
+				<div class="span8 offset2">
+					<img src="http://placehold.it/900x150" alt="">
 				</div>
 	
-				<div class="span8">
+				<div class="span8 offset2">
 					<div class="page-header">
 						<h1>${item.titulo}</h1>
 					</div>

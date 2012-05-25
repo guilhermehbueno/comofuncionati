@@ -17,10 +17,11 @@
     <link href="/stylesheets/assets/css/docs.css" rel="stylesheet">
     <link href="/stylesheets/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
 
-
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/stylesheets/assets/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/stylesheets/assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/stylesheets/assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/stylesheets/assets/ico/apple-touch-icon-57-precomposed.png">
+    
+    <script src="/stylesheets/assets/js/jquery.js"></script>
 </head>

@@ -1,20 +1,20 @@
 package com.bueno.controller;
 
+import static com.fastsql.sql.command.expression.LogicalComparisonExpression.attribute;
+
 import java.io.Serializable;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.bueno.component.produto.model.Produto;
-import com.bueno.component.usuario.model.Usuario;
-import com.fastsql.sql.builder.SqlTool;
-
-import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
+
+import com.bueno.component.usuario.model.Usuario;
+import com.fastsql.sql.builder.SqlTool;
 
 @Resource
 @Path("usuario")
@@ -43,8 +43,10 @@ public class UsuarioController  extends GenericController<Usuario>  implements S
 			usuario.setEmail(email);
 			usuario.setSenha(senha);
 			SqlTool.insert(usuario).execute();
+			usuario = SqlTool.getInstance().select(Usuario.class).where(attribute("nome").equals(nome).and("email").equals(email).and("senha").equals(senha)).build(usuario).getUniqueResult();
 			this.session.setAttribute("userName", usuario.getEmail());
-			this.result.use(Results.json()).from(usuario).serialize();
+			this.session.setAttribute("user", usuario);
+			this.result.use(Results.json()).from(usuario).exclude("senha").serialize();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

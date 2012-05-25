@@ -1,13 +1,23 @@
 package com.bueno.controller;
 
 import java.io.Serializable;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.ioc.SessionScoped;
+import br.com.caelum.vraptor.view.Results;
+
 import com.bueno.component.produto.model.Pedido;
+import com.bueno.component.usuario.model.Endereco;
+import com.bueno.component.usuario.model.Usuario;
+import com.fastsql.sql.builder.SqlTool;
+import static com.fastsql.sql.command.expression.LogicalComparisonExpression.*;
 import com.google.appengine.api.urlfetch.HTTPMethod;
 import com.google.appengine.api.urlfetch.HTTPRequest;
 import com.google.appengine.api.urlfetch.HTTPResponse;
@@ -15,16 +25,22 @@ import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 
 @Resource
+@SessionScoped
 @Path("pedido")
 public class PedidoController implements Serializable{
 	
 	private static final long serialVersionUID = 4434308005983946310L;
 	private final Result result;
+	private final HttpServletRequest request;
+	private final HttpSession session;
 
-	public PedidoController(Result result) {
+	public PedidoController(Result result, HttpServletRequest request) {
+		super();
 		this.result = result;
+		this.request = request;
+		this.session = request.getSession();
 	}
-	
+
 	@Path("{idProduto}/view")
 	public void visualizarPedido(String idProduto){
 		
@@ -37,7 +53,6 @@ public class PedidoController implements Serializable{
 	
 	@Path("identificacao")
 	public void identificacao(){
-		
 	}
 	
 	@Path("confirmacao")

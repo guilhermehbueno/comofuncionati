@@ -39,8 +39,6 @@
 							</div>
 						</div>
 					
-						
-						
 						<div class="control-group">
 							<label class="control-label" for="select01">Status</label>
 							<div class="controls">
