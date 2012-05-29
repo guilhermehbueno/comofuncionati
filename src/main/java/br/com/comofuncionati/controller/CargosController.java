@@ -28,7 +28,7 @@ public class CargosController extends GenericController<Cargo>{
 			Pagina entidade = new Pagina();
 			entidade = SqlTool.getInstance().select(Pagina.class)
 							.where(attribute("tituloResumido").equals(id))
-							.build(entidade)
+							.execute(entidade)
 							.getUniqueResult();
 			result.include("item", entidade);
 		} catch (Exception e) {

@@ -3,6 +3,7 @@ package com.bueno.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.bueno.controller.UsuarioController;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -21,11 +22,13 @@ public class BuenosUsuarioInterceptor implements Interceptor {
 	
 	private final HttpServletRequest request;
 	private final HttpSession session;
+	private final UsuarioController usuarioController;
 
-	public BuenosUsuarioInterceptor(HttpServletRequest request) {
+	public BuenosUsuarioInterceptor(HttpServletRequest request, UsuarioController usuarioController) {
 		super();
 		this.request = request;
 		this.session = this.request.getSession(true);
+		this.usuarioController = usuarioController;
 		System.out.println("Session id: "+this.session.getId());
 	}
 
@@ -36,26 +39,50 @@ public class BuenosUsuarioInterceptor implements Interceptor {
 
 	@Override
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object resourceInstance) throws InterceptionException {
-		  System.out.println("Interceptando " + request.getRequestURI());
+		try {
+			System.out.println("Interceptando " + request.getRequestURI());
 			isLoggedInGoogle();
 			isLoggedInFacebook();
 			isLoggedInTwitter();
 			isLoggedInThisSystem();
 	        stack.next(method, resourceInstance);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	private boolean isLoggedInGoogle(){
+	private boolean isLoggedInGoogle() throws Exception{
 		UserService userService = UserServiceFactory.getUserService();
 		if(!userService.isUserLoggedIn()){
 			this.session.setAttribute("login", userService.createLoginURL(request.getRequestURI()));
-			//this.session.setAttribute("userName", null);
 			return false;
 		}else{
 			User user = userService.getCurrentUser();
+			associateGoogleUserWithSystemUser(user);
 			this.session.setAttribute("userName", user.getEmail());
 			this.session.setAttribute("logout", userService.createLogoutURL("/"));
 			return true;
 		}
+	}
+	
+	private void associateGoogleUserWithSystemUser(User user) throws Exception{
+		boolean was = getWasAssociateGoogleUserWithSystemUser();
+		if(was){
+			this.session.setAttribute("wasAssociateGoogleUserWithSystemUser",true);
+		}else{
+			this.usuarioController.associateGoogleUserWithSystemUser(user);
+			this.session.setAttribute("wasAssociateGoogleUserWithSystemUser",true);
+		}
+	}
+	
+	private boolean getWasAssociateGoogleUserWithSystemUser(){
+		Boolean was = (Boolean) this.session.getAttribute("wasAssociateGoogleUserWithSystemUser");
+		if(was==null){
+			this.session.setAttribute("wasAssociateGoogleUserWithSystemUser",false);
+			return false;
+		}
+		
+		return was.booleanValue();
 	}
 	
 	private boolean isLoggedInFacebook(){

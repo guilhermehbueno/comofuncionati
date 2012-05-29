@@ -74,23 +74,26 @@
             </div>
 			<form id="formCadastroUsuario" class="well form-inline" method="post">
             <div class="modal-body">
+           				<div id="modalMessageErrorCadastro" class="alert alert-error">
+						  <h4 class="alert-heading">Warning!</h4>
+						  <span id="errorMessageSpanCadastro"></span>
+						</div>
 			<br/>
-			
 						<div class="row-fluid">
 							<div class="span10">
-								<input type="text" name="t.nome"  style="height: 28px;" placeholder="Nome completo" class="text-input email-input" id="input01" >
+								<input type="text" id="nomeLoginCadastro" name="t.nome"  style="height: 28px;" placeholder="Nome completo" class="text-input email-input" id="input01" >
 							</div>
 						</div>
 						
 						<div class="row-fluid">
 							<div class="span10">
-								<input type="text" name="t.email" style="height: 28px;" placeholder="E-mail" class="text-input email-input" id="input01" >
+								<input type="text" id="emailLoginCadastro" name="t.email" style="height: 28px;" placeholder="E-mail" class="text-input email-input" id="input01" >
 							</div>
 						</div>
 						
 						<div class="row-fluid">
 								<div class="span8">
-									<input type="text" name="t.senha" style="height: 28px;" placeholder="Senha" class="text-input" id="input02" >
+									<input type="text" id="passwordLoginCadastro" name="t.senha" style="height: 28px;" placeholder="Senha" class="text-input" id="input02" >
 								</div>
 						</div>
             </div>
@@ -116,16 +119,21 @@
               <h3>Entrar</h3>
             </div>
             <div class="modal-body">
+            
+            			<div id="modalMessageError" class="alert alert-error">
+						  <h4 class="alert-heading">Warning!</h4>
+						  <span id="errorMessageSpan"></span>
+						</div>
+            			
 						<div class="row-fluid">
 							<div class="span10">
-								<input type="text"  style="height: 28px;" placeholder="Usuário ou E-mail" class="text-input email-input" id="input01" >
+								<input type="text" id="usuarioLogin" style="height: 28px;" placeholder="Usuário ou E-mail" class="text-input email-input">
 							</div>
 						</div>
 						
 						<div class="row-fluid">
 								<div class="span8">
-									<input type="text" style="height: 28px;" placeholder="Senha" class="text-input" id="input02" >
-									
+									<input type="text" id="passwordLogin" style="height: 28px;" placeholder="Senha" class="text-input" id="input02" >
 								</div>
 							</div>
 							<div class="row-fluid">

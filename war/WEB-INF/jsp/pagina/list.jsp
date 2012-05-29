@@ -1,5 +1,6 @@
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
 <my:preferences-header />
 <my:preferences-container>
 	<div class="row">
@@ -31,7 +32,7 @@
 					<td><c:out value="${item.idPagina}" /></td>
 					<td><c:out value="${item.titulo}" /></td>
 					<td><c:out value="${item.tituloResumido}" /></td>
-					<td><c:out value="${item.conteudoResumido}" /></td>
+					<td><c:out value="${fn:substring(item.conteudoResumido, 0, 50)} (...)" /></td>
 					<td><c:out value="${item.tipo}" /></td>
 					<td><c:out value="${item.status}" /></td>
 					<td><c:out value="${item.pai}" /></td>

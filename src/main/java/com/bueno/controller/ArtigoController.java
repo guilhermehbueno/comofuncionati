@@ -41,7 +41,7 @@ public class ArtigoController extends GenericController<Pagina>{
 			Pagina entidade = new Pagina();
 			entidade = SqlTool.getInstance().select(Pagina.class)
 							.where(attribute("tituloResumido").equals(id))
-							.build(entidade)
+							.execute(entidade)
 							.getUniqueResult();
 			System.out.println("Buscando Paginas associadas");
 			initPaginacao(entidade, 1);
@@ -57,7 +57,7 @@ public class ArtigoController extends GenericController<Pagina>{
 			Pagina entidade = new Pagina();
 			entidade = SqlTool.getInstance().select(Pagina.class)
 							.where(attribute("tituloResumido").equals(id))
-							.build(entidade)
+							.execute(entidade)
 							.getUniqueResult();
 			initPaginacao(entidade, page);
 			this.result.include("item", entidade);
@@ -66,7 +66,7 @@ public class ArtigoController extends GenericController<Pagina>{
 		}
 	}
 	
-	private void initPaginacao(Pagina entidade, int page){
+	private void initPaginacao(Pagina entidade, int page) throws Exception{
 		HttpSession session = this.request.getSession(true);
 		if(PaginaTipoEnum.SUBPAGINA.equals(entidade.getTipo())){
 			List<Paginacao> paginacao = (List<Paginacao>) session.getAttribute("paginacao");
@@ -76,7 +76,7 @@ public class ArtigoController extends GenericController<Pagina>{
 			return;
 		}
 		
-		List<Pagina> paginasAssociadas = SqlTool.getInstance().select(Pagina.class).where(LogicalComparisonExpression.attribute("pai").equals(entidade.getIdPagina())).build(entidade).getResult();
+		List<Pagina> paginasAssociadas = SqlTool.getInstance().select(Pagina.class).where(LogicalComparisonExpression.attribute("pai").equals(entidade.getIdPagina())).execute(entidade).getResult();
 		List<Paginacao> paginacao = Paginacao.factory(entidade, paginasAssociadas);
 		PaginacaoUtil.order(paginacao);
 		PaginacaoUtil.active(paginacao, page);

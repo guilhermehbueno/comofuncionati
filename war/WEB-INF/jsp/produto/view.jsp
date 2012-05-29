@@ -76,11 +76,11 @@
 		<hr class="soften">
 	</div>
 	
-	<div>
 		<div class="page-header">
 			<h1>Formas de Pagamento</h1>
 		</div>
-		<div>
+	<div class="row-fluid">
+		<div class="span8">
 			<p>
 				O PagSeguro  da empresa UOL é atualmente uma das formas de pagamento mais seguros que existem no comércio eletrônico. Com ele você não precisa informar oo número de seu cartão de crédito diretamente à loja que você está comprando. 
 Caso você tenha problema com a entrega do produto o mesmo permite a você bloquear o pagamento realizado em até 14 dias.
@@ -89,16 +89,14 @@ Além disto o PagSeguro oferece como forma de pagamento os príncipais MMMMMMMMM
  
 			</p>
 		</div>
-		<hr class="soften">
+		<div class="span4">
+			<a href="/pedido/adiciona/${produto.idProduto}">
+   			 <img  class="thumbnail" src="http://placehold.it/250x150&text=COMPRAR >>" alt="Pague com PagSeguro" />
+    		</a>
+		</div>
 	</div>
 </div>
-<div class="span2">
-<div  style="padding-top: 200px;">
-</div>
-	<a href="/pedido/identificacao">
-    <img  class="thumbnail" src="http://placehold.it/250x150&text=COMPRAR >>" alt="Pague com PagSeguro" />
-    </a>
-</div>
+
 
 
 </div>

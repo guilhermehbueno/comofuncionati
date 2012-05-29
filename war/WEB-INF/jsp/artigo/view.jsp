@@ -36,7 +36,7 @@
 			</div>
 	</div>
 		
-	<div class="row-fluid">
+	<div class="row">
 		<div class="page-header">
 		  <h2>Veja também</h2>
 		</div>

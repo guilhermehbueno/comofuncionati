@@ -1,4 +1,5 @@
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <my:preferences-header />
 <my:preferences-container>
@@ -24,41 +25,40 @@
 							<th>Preço total</th>
 						</tr>
 					</thead>
+					
+				<c:forEach var="item" items="${produtosSelecionados}">
 					<tr>
 						<td><img src="http://placehold.it/100x100" alt=""></td>
 						<td>
 							<div style="height: 40px;"></div>
-							<h4>${item.titulo} Nome do produto</h4>
+							<h4>${item.nome}</h4>
 						</td>
 						<td>
-							<div style="height: 40px;"></div> <input type="text"
-							class="span1" style="height: 28px;" />
+							<div style="height: 40px;"></div>
+							<input type="text"  id="precoProduto_${item.idProduto}" onblur="calculaTotal('precoProduto_${item.idProduto}', ${item.preco}, 'totalPrecoProduto_${item.idProduto}')"  class="span1" style="height: 28px;" value="1"/>
 						</td>
 						<td>
 							<div style="height: 40px;"></div> <a href="#"
 							class="btn btn-danger btn-mini"><i
 								class="icon-white icon-remove"></i></a>
 						</td>
-						<td><div style="height: 40px;"></div>R$35,00</td>
-						<td><div style="height: 40px;"></div>R$35,00</td>
+						<td><div style="height: 40px;"></div>R$ ${item.preco}</td>
+						<td>
+							<div style="height: 40px;"></div>
+							<span><h3>R$ </h3></span>
+							<h3  id="totalPrecoProduto_${item.idProduto}" class="calculo totalItem">${item.preco}</h3></td>
 					</tr>
+				</c:forEach>
 					<tr>
-						<td><img src="http://placehold.it/100x100" alt=""></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td>
-							<div style="height: 40px;"></div>
-							<h4>${item.titulo} Nome do produto</h4>
+							<h3 id="total"></h3>
 						</td>
-						<td>
-							<div style="height: 40px;"></div> <input type="text"
-							class="span1" style="height: 28px;" />
-						</td>
-						<td>
-							<div style="height: 40px;"></div> <a href="#"
-							class="btn btn-danger btn-mini"><i
-								class="icon-white icon-remove"></i></a>
-						</td>
-						<td><div style="height: 40px;"></div>R$35,00</td>
-						<td><div style="height: 40px;"></div>R$35,00</td>
+					
 					</tr>
 				</table>
 				<hr class="soften">
@@ -66,7 +66,7 @@
 		</div>
 		<div class="row">
 			<div class="span6 offset4">
-				<p>${item.conteudo} Lorem ipsum dolor sit amet, consectetur
+				<p>Lorem ipsum dolor sit amet, consectetur
 					adipiscing elit. Vestibulum pharetra consectetur aliquet. Ut odio
 					lectus, iaculis vitae ornare ac, rhoncus et velit. Quisque blandit
 					blandit augue quis ultrices. Aliquam quis mi non ipsum fermentum
@@ -85,109 +85,34 @@
 				</a>
 			</div>
 		</div>
-		<div class="row">
-			<div class="page-header">
-				<h2>Veja também</h2>
-			</div>
-
-			<!-- TORNAR DINAMICO -->
-			<div class="span3">
-				<ul class="thumbnails">
-					<c:forEach var="submenu" items="${menu.menu}">
-						<li class="span3">
-							<div class="thumbnail">
-								<img src="http://placehold.it/260x180" alt="">
-								<div class="caption">
-									<h5>
-										<c:out value="${submenu.label}" />
-										<br />
-									</h5>
-									<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-										quam. Donec id elit non mi porta gravida at eget metus. Nullam
-										id dolor id nibh ultricies vehicula ut id elit.</p>
-									<p>
-										<a href="#" class="btn btn-primary">Saiba Mais...</a>
-									</p>
-								</div>
-							</div>
-					</c:forEach>
-					</li>
-				</ul>
-			</div>
-
-			<div class="span3">
-				<ul class="thumbnails">
-					<c:forEach var="submenu" items="${menu.menu}">
-						<li class="span3">
-							<div class="thumbnail">
-								<img src="http://placehold.it/260x180" alt="">
-								<div class="caption">
-									<h5>
-										<c:out value="${submenu.label}" />
-										<br />
-									</h5>
-									<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-										quam. Donec id elit non mi porta gravida at eget metus. Nullam
-										id dolor id nibh ultricies vehicula ut id elit.</p>
-									<p>
-										<a href="#" class="btn btn-primary">Saiba Mais...</a>
-									</p>
-								</div>
-							</div>
-					</c:forEach>
-					</li>
-				</ul>
-			</div>
-
-			<div class="span3">
-				<ul class="thumbnails">
-					<c:forEach var="submenu" items="${menu.menu}">
-						<li class="span3">
-							<div class="thumbnail">
-								<img src="http://placehold.it/260x180" alt="">
-								<div class="caption">
-									<h5>
-										<c:out value="${submenu.label}" />
-										<br />
-									</h5>
-									<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-										quam. Donec id elit non mi porta gravida at eget metus. Nullam
-										id dolor id nibh ultricies vehicula ut id elit.</p>
-									<p>
-										<a href="#" class="btn btn-primary">Saiba Mais...</a>
-									</p>
-								</div>
-							</div>
-					</c:forEach>
-					</li>
-				</ul>
-			</div>
-
-			<div class="span3">
-				<ul class="thumbnails">
-					<c:forEach var="submenu" items="${menu.menu}">
-						<li class="span3">
-							<div class="thumbnail">
-								<img src="http://placehold.it/260x180" alt="">
-								<div class="caption">
-									<h5>
-										<c:out value="${submenu.label}" />
-										<br />
-									</h5>
-									<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-										quam. Donec id elit non mi porta gravida at eget metus. Nullam
-										id dolor id nibh ultricies vehicula ut id elit.</p>
-									<p>
-										<a href="#" class="btn btn-primary">Saiba Mais...</a>
-									</p>
-								</div>
-							</div>
-					</c:forEach>
-					</li>
-				</ul>
-			</div>
-			<!-- TORNAR DINAMICO -->
-		</div>
 	</div>
+	
+	<script type="text/javascript" charset="utf-8">
+	jQuery(document).ready(
+	);
+	
+	function calculaTotal(input, preco, saida){
+		console.log('input'+input);
+		console.log('preco'+preco);
+		console.log('saida'+saida);
+		if($('#'+input).val()<=0){
+			$('#'+input).val(1);
+		}
+		
+		var quantidade = $('#'+input).val();
+		var precoTotal = quantidade * preco;
+		$('#'+saida).text(precoTotal);
+		
+		total();
+	}
+	
+	function total(){
+		var total = 0;
+		$(".totalItem").each(function() {
+			total += parseFloat($(this).text());
+		});
+		$('#total').text('Total: R$ '+total);
+	}
+	</script>
 </my:preferences-container>
 <my:preferences-footer />

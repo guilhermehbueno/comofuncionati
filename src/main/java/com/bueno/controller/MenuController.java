@@ -23,16 +23,16 @@ public class MenuController extends GenericController<Menu>{
 	private final Result result;
 	private List<Menu> allMenus;
 	
-	public MenuController(Result result, ServletContext context) {
+	public MenuController(Result result, ServletContext context) throws Exception {
 		super(result);
 		this.result = result;
 		this.context = context;
 		init();
 	}
 	
-	private void init(){
+	private void init() throws Exception{
 		Menu example = new Menu();
-		allMenus = SqlTool.getInstance().select(example.getClass()).build(example).getResult();
+		allMenus = SqlTool.getInstance().select(example.getClass()).execute(example).getResult();
 	}
 
 	@Path("list")
@@ -41,13 +41,13 @@ public class MenuController extends GenericController<Menu>{
 	}
 	
 	@Path("{id}/edit")
-	public void edit(String id){
+	public void edit(String id) throws Exception{
 		Menu example = new Menu();
 		Menu menuSelecionaroParaEdicao = 
 				SqlTool.getInstance()
 						.select(example.getClass())
 						.where(LogicalComparisonExpression.id(example.getClass()).equals(id))
-						.build(example)
+						.execute(example)
 						.getUniqueResult();
 		result.include("menusAll", allMenus);
 		result.include("menuEdit", menuSelecionaroParaEdicao);
@@ -63,6 +63,7 @@ public class MenuController extends GenericController<Menu>{
 				menu.setPai(null);
 			}
 			SqlTool
+				.getInstance()
 				.insert(menu)
 				.execute();
 			context.setAttribute("updateMenu", true);

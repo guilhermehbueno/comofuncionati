@@ -18,8 +18,8 @@
   </li>
 </ul>
 </div>
-   <div class="row-fluid">
-   	  <div class="span10 offset2">
+   <div class="row">
+   	  <div class="span10 offset1">
 	  <img src="http://placehold.it/1280x200" alt="">
 	  </div>
    </div>

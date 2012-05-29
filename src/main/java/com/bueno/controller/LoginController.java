@@ -4,6 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.bueno.component.usuario.model.Usuario;
+import com.bueno.component.usuario.model.UsuarioWrapper;
+import com.fastsql.sql.builder.SqlTool;
+import static com.fastsql.sql.command.expression.LogicalComparisonExpression.*;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
@@ -27,13 +30,30 @@ public class LoginController {
 		this.session = this.request.getSession();
 	}
 
-	public void login(String emailUsername, String senha){
-		System.out.println("emailUsername: "+emailUsername+" senha:"+senha);
-		this.session.setAttribute("userName", emailUsername);
-		Usuario usuario = new Usuario();
-		usuario.setEmail(emailUsername);
-		this.session.setAttribute("user", usuario);
-		this.result.use(Results.json()).from(usuario).serialize();
+	public void login(String emailUsername, String senha) throws Exception{
+		boolean isValid = isUserPasswordValid(emailUsername, senha);
+		if(isValid){
+			System.out.println("emailUsername: "+emailUsername+" senha:"+senha);
+			this.session.setAttribute("userName", emailUsername);
+			Usuario usuario = new Usuario();
+			usuario.setEmail(emailUsername);
+			this.session.setAttribute("user", usuario);
+			this.result.use(Results.json()).from(UsuarioWrapper.create(usuario, true)).serialize();
+		}else{
+			this.result.use(Results.json()).from(UsuarioWrapper.create(new Usuario(), false)).serialize();
+		}
+	}
+	
+	private boolean isUserPasswordValid(String email, String senha) throws Exception{
+		Usuario user = new Usuario();
+		user = SqlTool.getInstance().select(user.getClass()).where(attribute("email").equals(email).and("senha").equals(senha)).execute(user).getUniqueResult();
+		if(user == null){
+			System.out.println("Usuário não é válido");
+			return false;
+		}else{
+			System.out.println("Usuário é válido");
+			return true;
+		}
 	}
 	
 	public void logout(){

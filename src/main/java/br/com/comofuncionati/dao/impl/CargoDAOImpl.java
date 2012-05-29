@@ -11,16 +11,16 @@ import static com.fastsql.sql.command.expression.LogicalComparisonExpression.att
 public class CargoDAOImpl implements CargoDAO {
 	
 	@Override
-	public Cargo getCargoByNome(String nome) {
+	public Cargo getCargoByNome(String nome) throws Exception {
 		Cargo example = Cargo.newCargo().create();
-		example = SqlTool.getInstance().select(Cargo.class).where(attribute("nome").equals(nome)).build(example).getUniqueResult();
+		example = SqlTool.getInstance().select(Cargo.class).where(attribute("nome").equals(nome)).execute(example).getUniqueResult();
 		return example;
 	}
 
 	@Override
-	public List<Cargo> getAllCargos(String nome) {
+	public List<Cargo> getAllCargos(String nome) throws Exception {
 		Cargo example = Cargo.newCargo().create();
-		List<Cargo> cargos = SqlTool.getInstance().select(Cargo.class).build(example).getResult();
+		List<Cargo> cargos = SqlTool.getInstance().select(Cargo.class).execute(example).getResult();
 		return cargos;
 	}
 

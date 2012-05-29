@@ -6,7 +6,7 @@ import br.com.comofuncionati.domain.model.Cargo;
 
 public interface CargoDAO {
 	
-	public Cargo getCargoByNome(String nome);
-	public List<Cargo> getAllCargos(String nome);
+	public Cargo getCargoByNome(String nome)  throws Exception;
+	public List<Cargo> getAllCargos(String nome)  throws Exception;
 
 }

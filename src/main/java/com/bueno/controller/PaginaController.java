@@ -23,13 +23,13 @@ public class PaginaController extends GenericController<Pagina>{
 	}
 	
 	@Path("{id}/edit")
-	public void edit(String id) {
+	public void edit(String id) throws Exception {
 		super.edit(id);
 		Pagina pagina = new Pagina();
 		try {
 		List<Pagina> paginas = SqlTool.getInstance()
 					.select(pagina.getClass())
-					.build(pagina)
+					.execute(pagina)
 					.getResult();
 			result.include("itens", paginas);
 		} catch (Exception e) {
@@ -45,7 +45,7 @@ public class PaginaController extends GenericController<Pagina>{
 		try {
 			List<Pagina> paginas = SqlTool.getInstance()
 						.select(pagina.getClass())
-						.build(pagina)
+						.execute(pagina)
 						.getResult();
 				result.include("itens", paginas);
 			} catch (Exception e) {

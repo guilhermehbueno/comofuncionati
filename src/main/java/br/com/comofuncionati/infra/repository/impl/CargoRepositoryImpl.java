@@ -20,7 +20,7 @@ public class CargoRepositoryImpl implements CargoRepository {
 	}
 
 	@Override
-	public Cargo getCargoBy(String nome) {
+	public Cargo getCargoBy(String nome) throws Exception {
 		Cargo cargo = CARGOS.get(nome);
 		if(cargo==null){
 			cargo = cargoDAO.getCargoByNome(nome);

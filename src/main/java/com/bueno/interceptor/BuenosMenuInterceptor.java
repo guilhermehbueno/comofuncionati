@@ -39,17 +39,22 @@ public class BuenosMenuInterceptor implements Interceptor, Serializable{
 
 	@Override
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object resourceInstance) throws InterceptionException {
-		if(canRefreshMenu()){
-			Logger logger = LoggerFactory.getLogger(BuenosMenuInterceptor.class);
-			logger.info("Atualizando menus...");
-			List<Menu> menus = SqlTool
-					.getInstance()
-					.select(Menu.class)
-					.where(attribute("status").differentFrom("INATIVO").and("tipo").equals("SUPERIOR"))
-					.build(new Menu())
-					.getResult();
-			context.setAttribute("menus", menus);
-			context.setAttribute("updateMenu", false);
+		try {
+			if(canRefreshMenu()){
+				Logger logger = LoggerFactory.getLogger(BuenosMenuInterceptor.class);
+				logger.info("Atualizando menus...");
+				List<Menu> menus;
+					menus = SqlTool
+							.getInstance()
+							.select(Menu.class)
+							.where(attribute("status").differentFrom("INATIVO").and("tipo").equals("SUPERIOR"))
+							.execute(new Menu())
+							.getResult();
+				context.setAttribute("menus", menus);
+				context.setAttribute("updateMenu", false);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		stack.next(method, resourceInstance);
 	}

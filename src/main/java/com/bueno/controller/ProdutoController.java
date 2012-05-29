@@ -29,7 +29,7 @@ public class ProdutoController extends GenericController<Produto> {
 			produto = SqlTool.getInstance()
 							.select(Produto.class)
 							.where(LogicalComparisonExpression.id(Produto.class).equals(id))
-							.build(produto)
+							.execute(produto)
 							.getUniqueResult();
 			result.include("produto", produto);
 		} catch (Exception e) {
@@ -38,12 +38,12 @@ public class ProdutoController extends GenericController<Produto> {
 	}
 	
 	@Path("categoria/{nome}")
-	public void categoria(String nome){
+	public void categoria(String nome) throws Exception{
 		Produto example = new Produto();
 		List<Produto> produtos = 
 					SqlTool.getInstance()
 					.select(example.getClass())
-					.where(LogicalComparisonExpression.attribute("categoria").equals(nome)).build(example).getResult();
+					.where(LogicalComparisonExpression.attribute("categoria").equals(nome)).execute(example).getResult();
 		result.include("produtos", produtos);
 	}
 	

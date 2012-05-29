@@ -25,23 +25,30 @@
 			var urlHostCadastro ='${host}/usuario/salvar';
 			console.log(urlHostCadastro);
 			$('#loader').hide();
+			$('#modalMessageErrorCadastro').hide();
 			$('#formCadastroUsuario').submit(function(){
 				$('#loader').show();
 				jQuery.ajax({
 			          url: urlHostCadastro,
 			          type: 'POST',
-			          data:{nome: 'guilherme', email:'guilhermehbueno@gmail.com', senha:'123'},
+			          data:{nome: $('#nomeLoginCadastro').val(), email: $('#emailLoginCadastro').val(), senha: $('#passwordLoginCadastro').val()},
 			          dataType: 'json',
 			          success: function(data) {
-			        	    console.log('Load was performed: '+data.usuario.email);
+			        	  if(data.usuarioWrapper.isLogged){			        		  
+			        	    console.log('Load was performed: '+data.usuarioWrapper.email);
 							$('#cadastrar').modal('hide')
 							$('#loader').hide();
 							$("#menuPerfil")
 								.empty()
-								.html("<li id='userNameLogado'><a href='#'>"+data.usuario.email+"</a></li>")
+								.html("<li id='userNameLogado'><a href='#'>"+data.usuarioWrapper.email+"</a></li>")
 								.append("<li><a href='/perfil'>Meus pedidos</a></li>")
 								.append("<li><a href='/perfil'>Meus endereços</a></li>")
 								.append("<li><a href='/login/logout'>Sair</a></li>");
+			        	  }else{
+			        		  $('#errorMessageSpanCadastro').text('Não foi possível realizar o cadastro!');
+			        	  		$('#modalMessageErrorCadastro').show();
+			        	  		$('#loader').hide();
+			        	  }
 			          }
 				});
 				return false; 
@@ -61,24 +68,33 @@
 			var urlHostLogin ='${host}/login/login';
 			console.log(urlHostLogin);
 			$('#loaderLogin').hide();
+			$('#modalMessageError').hide();
 			$('#formLogin').submit(function(){
 				$('#loaderLogin').show();
+				$('#modalMessageError').hide();
 				console.log("executando submit: "+urlHostLogin)
 				jQuery.ajax({
 			          url: urlHostLogin,
 			          type: 'POST',
-			          data:{emailUsername:'guilhermehbueno@gmail.com', senha:'123'},
+			          data:{emailUsername: $('#usuarioLogin').val(), senha: $('#passwordLogin').val()},
 			          dataType: 'json',
 			          success: function(data) {
-			        	    console.log('Load was performed: '+data.usuario.email);
-							$('#logar').modal('hide')
-							$('#loaderLogin').hide();
-							$("#menuPerfil")
-								.empty()
-								.html("<li id='userNameLogado'><a href='#'>"+data.usuario.email+"</a></li>")
-								.append("<li><a href='/perfil'>Meus pedidos</a></li>")
-								.append("<li><a href='/perfil'>Meus endereços</a></li>")
-								.append("<li><a href='/login/logout'>Sair</a></li>");
+			        	  
+			        	  	if(data.usuarioWrapper.isLogged){
+				        	    console.log('Load was performed: '+data.usuarioWrapper.email);
+								$('#logar').modal('hide')
+								$('#loaderLogin').hide();
+								$("#menuPerfil")
+									.empty()
+									.html("<li id='userNameLogado'><a href='#'>"+data.usuarioWrapper.email+"</a></li>")
+									.append("<li><a href='/perfil'>Meus pedidos</a></li>")
+									.append("<li><a href='/perfil'>Meus endereços</a></li>")
+									.append("<li><a href='/login/logout'>Sair</a></li>");
+			        	  	}else{
+			        	  		$('#errorMessageSpan').text('Não foi possível realizar o login!');
+			        	  		$('#modalMessageError').show();
+			        	  		$('#loaderLogin').hide();
+			        	  	}	
 			          }
 				});
 				return false; 

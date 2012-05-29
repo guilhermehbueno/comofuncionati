@@ -32,7 +32,7 @@ public abstract class GenericController<T> implements Serializable{
 			T entidade = (T) SqlTool.getInstance()
 					.select(clazz)
 					.where(id(clazz).equals(id))
-					.build((T)clazz.newInstance())
+					.execute((T)clazz.newInstance())
 					.getUniqueResult();
 			result.include("item", entidade);
 		} catch (Exception e) {
@@ -44,7 +44,7 @@ public abstract class GenericController<T> implements Serializable{
 	public void save(T t) {
 		try {
 			System.out.println("Salvando: "+t);
-			SqlTool.insert(t).execute();
+			SqlTool.getInstance().insert(t).execute();
 			result.redirectTo("list"); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,13 +71,13 @@ public abstract class GenericController<T> implements Serializable{
 	}
 	
 	@Path("{id}/edit")
-	public void edit(String id) {
+	public void edit(String id) throws Exception {
 		Class clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		try {
 			T entidade = (T) SqlTool.getInstance()
 					.select(clazz)
 					.where(id(clazz).equals(id.toString()))
-					.build((T)clazz.newInstance())
+					.execute((T)clazz.newInstance())
 					.getUniqueResult();
 			result.include("item", entidade);
 		} catch (Exception e) {
@@ -91,14 +91,19 @@ public abstract class GenericController<T> implements Serializable{
 	
 	@Path("delete")
 	public void delete(Long id) {
-		SqlTool.delete();
+		Class clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		try {
+			SqlTool.getInstance().delete(clazz).where(id(clazz).equals(id.toString())).execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	} 
 	
 	@Path("list")
 	public void list(){
 		Class clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		try {
-			List<T> all = SqlTool.getInstance().select(clazz).build((T)clazz.newInstance()).getResult();
+			List<T> all = SqlTool.getInstance().select(clazz).execute((T)clazz.newInstance()).getResult();
 			result.include("itens", all);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -4,6 +4,6 @@ import br.com.comofuncionati.domain.model.Cargo;
 
 public interface CargoRepository {
 	
-	public Cargo getCargoBy(String nome);
+	public Cargo getCargoBy(String nome) throws Exception;
 
 }
