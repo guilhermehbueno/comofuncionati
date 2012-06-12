@@ -8,7 +8,7 @@ import br.com.caelum.vraptor.Result;
 
 import com.bueno.component.produto.model.Produto;
 import com.fastsql.sql.builder.SqlTool;
-import com.fastsql.sql.command.expression.LogicalComparisonExpression;
+import com.fastsql.sql.expression.LogicalComparisonExpression;
 
 @Resource
 @Path("produto")

@@ -1,7 +1,7 @@
 package com.bueno.controller;
 
-import static com.fastsql.sql.command.expression.LogicalComparisonExpression.attribute;
-import static com.fastsql.sql.command.expression.LogicalComparisonExpression.id;
+import static com.fastsql.sql.expression.LogicalComparisonExpression.attribute;
+import static com.fastsql.sql.expression.LogicalComparisonExpression.id;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -101,7 +101,7 @@ public class EnderecoController implements Serializable{
 				SqlTool.getInstance().insert(obj).execute();
 			}else{
 				obj.setIdEndereco(idEndereco);
-				SqlTool.update(obj).where(id(Endereco.class).equals(idEndereco)).execute();
+				SqlTool.getInstance().update(obj).where(id(Endereco.class).equals(idEndereco)).execute();
 			}
 			
 			Usuario usuario = (Usuario) this.usuarioController.getUsuarioLogado();

@@ -6,7 +6,7 @@ import br.com.comofuncionati.dao.CargoDAO;
 import br.com.comofuncionati.domain.model.Cargo;
 
 import com.fastsql.sql.builder.SqlTool;
-import static com.fastsql.sql.command.expression.LogicalComparisonExpression.attribute;
+import static com.fastsql.sql.expression.LogicalComparisonExpression.attribute;
 
 public class CargoDAOImpl implements CargoDAO {
 	

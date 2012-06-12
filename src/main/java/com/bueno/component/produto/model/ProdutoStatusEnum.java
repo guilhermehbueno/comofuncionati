@@ -1,6 +1,8 @@
 package com.bueno.component.produto.model;
 
-public enum ProdutoStatusEnum {
+import java.io.Serializable;
+
+public enum ProdutoStatusEnum implements Serializable{
 	ATIVO,
 	INATIVO;
 }

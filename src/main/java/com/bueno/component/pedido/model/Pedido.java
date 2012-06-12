@@ -1,5 +1,6 @@
 package com.bueno.component.pedido.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.bueno.component.usuario.model.Usuario;
 
 @Entity(name="pedido")
 public class Pedido {
@@ -36,7 +40,7 @@ public class Pedido {
 	
 	@OneToMany
 	@JoinColumn(table="item", referencedColumnName="idPedido")
-	private List<Item> itens;
+	private List<Item> itens = new ArrayList<Item>();
 
 	public String getIdPedido() {
 		return idPedido;
@@ -89,8 +93,19 @@ public class Pedido {
 	public List<Item> getItens() {
 		return itens;
 	}
+	
+	public boolean addItem(Item item){
+		item.setIdPedido(this.idPedido);
+		item.setIdUsuario(this.idUsuario);
+		this.itens.add(item);
+		return true;
+	}
 
-	public void setItens(List<Item> itens) {
-		this.itens = itens;
+	@Override
+	public String toString() {
+		return "Pedido [idPedido=" + idPedido + ", idUsuario=" + idUsuario
+				+ ", dataPedido=" + dataPedido + ", dataFinalizado="
+				+ dataFinalizado + ", total=" + total + ", status=" + status
+				+ ", itens=" + itens + "]";
 	}
 }

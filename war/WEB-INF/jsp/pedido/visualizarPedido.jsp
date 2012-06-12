@@ -14,53 +14,63 @@
 		</div>
 		<div class="row">
 			<div class="span12">
-				<table class="table">
-					<thead>
+				<form id="formItens" class="form-horizontal" method="post"  action="/pedido/finaliza">
+					<table class="table">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Descrição</th>
+								<th>Quantidade</th>
+								<th>Remover Item</th>
+								<th>Preço unitário</th>
+								<th>Preço total</th>
+							</tr>
+						</thead>
+						
+						<c:forEach var="item" items="${itensSelecionados}" varStatus="s">
+							<tr>
+								<td><img src="http://placehold.it/100x100" alt=""></td>
+								<td>
+									<div style="height: 40px;"></div>
+									<h4>${item.nome}</h4>
+									<input type="hidden" name="itens[${s.index}].idPedido" value="${idPedido}"/>
+									<input type="hidden" name="itens[${s.index}].idUsuario" value="${idUsuario}"/>
+									<input type="hidden" name="itens[${s.index}].idProduto" value="${item.idProduto}"/>
+									<input type="hidden" name="itens[${s.index}].preco" value="${item.preco}"/>
+									
+								</td>
+								<td>
+									<div style="height: 40px;"></div>
+									<input type="text"  name="itens[${s.index}].quantidade" id="precoProduto_${item.idProduto}" onblur="calculaTotal('precoProduto_${item.idProduto}', ${item.preco}, 'totalPrecoProduto_${item.idProduto}')"  class="span1" style="height: 28px;" value="1"/>
+								</td>
+								<td>
+									<div style="height: 40px;"></div>
+									<a href="remove/${item.idProduto}"	class="btn btn-danger btn-mini" >
+									<i class="icon-white icon-remove"></i></a>
+								</td>
+								<td>
+									<div style="height: 40px;"></div>R$ ${item.preco}
+								</td>
+								<td>
+									<div style="height: 40px;"></div>
+									<span><h3>R$ </h3></span>
+									<h3  id="totalPrecoProduto_${item.idProduto}" class="calculo totalItem">${item.preco}</h3>
+								</td>
+							</tr>
+						</c:forEach>
 						<tr>
-							<th></th>
-							<th>Descrição</th>
-							<th>Quantidade</th>
-							<th>Remover Item</th>
-							<th>Preço unitário</th>
-							<th>Preço total</th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<h3 id="total"></h3>
+							</td>
+						
 						</tr>
-					</thead>
-					
-				<c:forEach var="item" items="${produtosSelecionados}">
-					<tr>
-						<td><img src="http://placehold.it/100x100" alt=""></td>
-						<td>
-							<div style="height: 40px;"></div>
-							<h4>${item.nome}</h4>
-						</td>
-						<td>
-							<div style="height: 40px;"></div>
-							<input type="text"  id="precoProduto_${item.idProduto}" onblur="calculaTotal('precoProduto_${item.idProduto}', ${item.preco}, 'totalPrecoProduto_${item.idProduto}')"  class="span1" style="height: 28px;" value="1"/>
-						</td>
-						<td>
-							<div style="height: 40px;"></div> <a href="#"
-							class="btn btn-danger btn-mini"><i
-								class="icon-white icon-remove"></i></a>
-						</td>
-						<td><div style="height: 40px;"></div>R$ ${item.preco}</td>
-						<td>
-							<div style="height: 40px;"></div>
-							<span><h3>R$ </h3></span>
-							<h3  id="totalPrecoProduto_${item.idProduto}" class="calculo totalItem">${item.preco}</h3></td>
-					</tr>
-				</c:forEach>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-							<h3 id="total"></h3>
-						</td>
-					
-					</tr>
-				</table>
+					</table>
+				</form>
 				<hr class="soften">
 			</div>
 		</div>
@@ -78,10 +88,10 @@
 
 			<div class="span2">
 				<!-- submit do form (obrigatório) -->
-				<a href="/pedido/confirmacao">
+				<a onclick="finalizaPedido();">
 				<img class="thumbnail"
 					src="http://placehold.it/250x150&text=COMPRAR >>"
-					alt="Pague com PagSeguro">
+					alt="Pague com PagSeguro" style="cursor: pointer;">
 				</a>
 			</div>
 		</div>
@@ -90,6 +100,11 @@
 	<script type="text/javascript" charset="utf-8">
 	jQuery(document).ready(
 	);
+	
+	function finalizaPedido(){
+		console.log('finalizando pedido');
+		$('#formItens').submit();
+	}
 	
 	function calculaTotal(input, preco, saida){
 		console.log('input'+input);

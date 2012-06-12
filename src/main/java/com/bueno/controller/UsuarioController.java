@@ -1,12 +1,14 @@
 package com.bueno.controller;
 
-import static com.fastsql.sql.command.expression.LogicalComparisonExpression.attribute;
+import static com.fastsql.sql.expression.LogicalComparisonExpression.attribute;
 
 import java.io.Serializable;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.apache.tools.ant.types.CommandlineJava.SysProperties;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -27,6 +29,7 @@ public class UsuarioController  extends GenericController<Usuario>  implements S
 	private final HttpServletRequest request;
 	private final HttpSession session;
 	private final LoginController loginController;
+	
 
 	public UsuarioController(Result result, HttpServletRequest request, LoginController loginController) {
 		super(result);
@@ -75,12 +78,15 @@ public class UsuarioController  extends GenericController<Usuario>  implements S
 	}
 	
 	public Usuario getUsuarioLogado() throws Exception{
+		System.out.println("Executando getUsuarioLogado");
 		String userName = (String) this.session.getAttribute("userName");
+		System.out.println("userName: "+userName);
 		if(userName == null){
 			return null;
 		}
 		
 		Usuario usuario = SqlTool.getInstance().select(Usuario.class).where(attribute("email").equals(userName)).execute(new Usuario()).getUniqueResult();
+		System.out.println("Recuperando: "+usuario);
 		return usuario;
 	}
 	

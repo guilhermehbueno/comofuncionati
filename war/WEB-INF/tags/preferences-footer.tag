@@ -17,9 +17,6 @@
 <script src="/stylesheets/assets/js/application.js"></script>
 <script src="/stylesheets/assets/js/buenosscript.js"></script>
 
-
-
-
 <script type="text/javascript" charset="utf-8">
 		jQuery(document).ready(function(){
 			var urlHostCadastro ='${host}/usuario/salvar';

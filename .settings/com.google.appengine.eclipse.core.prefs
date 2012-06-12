@@ -1,11 +1,18 @@
-#Sun May 20 21:49:19 BRT 2012
+#Mon Jun 11 23:04:42 BRT 2012
 eclipse.preferences.version=1
 filesCopiedToWebInfLib=appengine-api-1.0-sdk-1.6.1.jar|appengine-api-labs-1.6.1.jar|appengine-jsr107cache-1.6.1.jar|jsr107cache-1.1.jar|google_sql.jar
 gaeDatanucleusEnabled=false
 gaeDeployDialogSettings=
 gaeIsEclipseDefaultInstPath=false
 googleCloudSqlEnabled=true
-localDevMySqlEnabled=false
+localDevMySqlEnabled=true
+mySqlDatabaseName=
+mySqlDatabasePassword=
+mySqlDatabaseUser=root
+mySqlHostName=localhost
+mySqlIsConfigured=true
+mySqlJdbcJar=
+mySqlPort=3306
 prodDatabaseName=teste
 prodDatabasePassword=pato123
 prodDatabaseUser=guilhermehbueno

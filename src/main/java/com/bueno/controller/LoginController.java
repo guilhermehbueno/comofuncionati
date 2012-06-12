@@ -1,19 +1,20 @@
 package com.bueno.controller;
 
+import static com.fastsql.sql.expression.LogicalComparisonExpression.attribute;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import com.bueno.component.usuario.model.Usuario;
-import com.bueno.component.usuario.model.UsuarioWrapper;
-import com.fastsql.sql.builder.SqlTool;
-import static com.fastsql.sql.command.expression.LogicalComparisonExpression.*;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
 
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.view.Results;
+
+import com.bueno.component.usuario.model.Usuario;
+import com.bueno.component.usuario.model.UsuarioWrapper;
+import com.fastsql.sql.builder.SqlTool;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 @Resource
 @RequestScoped

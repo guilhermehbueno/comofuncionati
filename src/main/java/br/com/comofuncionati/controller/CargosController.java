@@ -8,7 +8,7 @@ import br.com.comofuncionati.domain.model.Cargo;
 import com.bueno.component.pagina.model.Pagina;
 import com.bueno.controller.GenericController;
 import com.fastsql.sql.builder.SqlTool;
-import static com.fastsql.sql.command.expression.LogicalComparisonExpression.*;
+import static com.fastsql.sql.expression.LogicalComparisonExpression.*;
 
 @Resource
 @Path("/cargo")

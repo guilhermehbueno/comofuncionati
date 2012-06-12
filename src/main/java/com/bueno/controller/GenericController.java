@@ -1,6 +1,6 @@
 package com.bueno.controller;
 
-import static com.fastsql.sql.command.expression.LogicalComparisonExpression.id;
+import static com.fastsql.sql.expression.LogicalComparisonExpression.id;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -60,7 +60,7 @@ public abstract class GenericController<T> implements Serializable{
 			String idValue = (String) id.get(t);
 			System.out.println("Recuperando id para update: "+idValue);
 			id.setAccessible(false);
-			SqlTool
+			SqlTool.getInstance()
 				.update(t)
 				.where(id(t.getClass()).equals(idValue))
 				.execute();

@@ -1,6 +1,6 @@
 package com.bueno.interceptor;
 
-import static com.fastsql.sql.command.expression.LogicalComparisonExpression.attribute;
+import static com.fastsql.sql.expression.LogicalComparisonExpression.attribute;
 
 import java.io.Serializable;
 import java.util.List;

@@ -12,7 +12,7 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 
 import com.bueno.component.menu.model.Menu;
 import com.fastsql.sql.builder.SqlTool;
-import com.fastsql.sql.command.expression.LogicalComparisonExpression;
+import com.fastsql.sql.expression.LogicalComparisonExpression;
 
 @Resource
 @RequestScoped
@@ -80,7 +80,7 @@ public class MenuController extends GenericController<Menu>{
 	public void update(Menu menu){
 		System.out.println("Salvando o menu: "+menu);
 		try {
-			SqlTool
+			SqlTool.getInstance()
 				.update(menu)
 				.where(LogicalComparisonExpression.id(menu.getClass()).equals(menu.getId()))
 				.execute();
